@@ -9,7 +9,6 @@ var logger = require('morgan');
 var cors = require('cors');
 
 require('dotenv').config();
-console.log(process.env);
 
 var authRouter = require('./routes/auth');
 var countriesRouter = require('./routes/countries');
@@ -27,7 +26,7 @@ app.use(cors());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-const options = require('./knexfile').development;
+const options = require('./knexfile').production;
 const knex = require('knex')(options);
 app.use((req, res, next) => {
   req.db = knex;
